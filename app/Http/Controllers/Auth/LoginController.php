@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -47,14 +47,15 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials))
         {   
-            if(Auth::user()->rol === 'A')
-                return redirect('welcome');
-            else
-                return 'No ha iniciado sesión';
-                //return redirect('home');
+            switch(Auth::user()->rol)
+            {
+                case 'A':
+                    return redirect('admin/dashadmin');
+                    break;
+                default:
+                    return 'No ha iniciado sesión';
+            }
         }
-
-        return 'error';
     }
 
     public function logout()
