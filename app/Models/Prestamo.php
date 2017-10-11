@@ -8,7 +8,7 @@ class Prestamo extends Model
 {
 	protected $table = 'prestamos';
 
-	protected $timestamps = false;
+	public $timestamps = false;
 	protected $primaryKey = 'id';
 
     protected $fillable = [

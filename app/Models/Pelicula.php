@@ -9,7 +9,7 @@ class Pelicula extends Model
     protected $table = 'peliculas';
     protected $primaryKey = 'id';
 
-    protected $timestamps = false;
+    public $timestamps = false;
 
 
     protected $fillable = ['categoria_id','name','description','image','fechaLanz','status'];

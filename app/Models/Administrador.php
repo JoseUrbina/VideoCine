@@ -8,7 +8,7 @@ class Administrador extends Model
 {
     protected $table = 'administradores';
     protected $primaryKey = 'id';
-    protected $timestamps = false;
+    public $timestamps = false;
 
 
     protected $fillable = 
