@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'VideoCine') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
 </head>
@@ -43,17 +42,15 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
+                        <!-- Authentication Links 
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
+                        @else   -->                          
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->username }} <span class="caret"></span>
-                                </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span></a>
 
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" aria-labelledby="dLabel">
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -67,7 +64,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+                       <!-- @endguest -->
                     </ul>
                 </div>
             </div>
@@ -77,9 +74,8 @@
         </div>        
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+    <!-- Scripts -->    
+    <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>   
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/myScripts.js') }}"></script>

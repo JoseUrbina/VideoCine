@@ -109,7 +109,8 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $category = Categoria::find($id);
-        $category->delete();
+        $category->status = false;
+        $category->save();
 
         session()->flash('status',
                           [ 
