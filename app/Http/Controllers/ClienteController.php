@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Administrador;
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\adminRequest;
-use App\Http\Requests\adminuRequest;
+use App\Http\Requests\cliRequest;
 
-class AdminController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admin = Administrador::all()->where('status',1);
-        return view('admin.padmin.index')->with('admin',$admin);
+        $cli = Cliente::all()->where('status',1);
+        return view('admin.cliente.index')->with('cli',$cli);
     }
 
     /**
@@ -29,7 +28,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.padmin.create');
+        return view('admin.cliente.create');
     }
 
     /**
@@ -38,31 +37,30 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(adminRequest $request)
+    public function store(cliRequest $request)
     {
         $user = new User;
         $user->username = $request->username;
         $user->email = $request->email;
         // Assigning new password witn the hash of laravel
         $user->password = Hash::make($request->password);
+        $user->rol = 'C';
         $user->save();
 
-        $admin = new Administrador;
-        $admin->cedula = $request->cedula;
-        $admin->name = $request->name;
-        $admin->lastname = $request->lastname;
-        $admin->address = $request->address;
-        $admin->phoneNumber = $request->phoneNumber;
-        $admin->gender = $request->gender;
+        $cli = new Cliente;
+        $cli->name = $request->name;
+        $cli->lastname = $request->lastname;
+        $cli->address = $request->address;
+        $cli->phoneNumber = $request->phoneNumber;
+        $cli->gender = $request->gender;
 
-        $user->administrador()->save($admin);
+        $user->cliente()->save($cli);
 
         session()->flash('status',
                         ['color' => 'info', 
                          'message' => 'Registro guardado exitosamente']);
 
-        return redirect()->action('AdminController@index');
-
+        return redirect()->action('ClienteController@index');
     }
 
     /**
@@ -84,8 +82,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin = Administrador::find($id);
-        return view('admin.padmin.edit')->with('admin', $admin);
+        $cli = Cliente::find($id);
+        return view('admin.cliente.edit')->with('cli',$cli);
     }
 
     /**
@@ -95,24 +93,22 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(adminuRequest $request, $id)
-    {      
-        $admin = Administrador::find($id);
-        $admin->cedula = $request->cedula;
-        $admin->name = $request->name;
-        $admin->lastname = $request->lastname;
-        $admin->address = $request->address;
-        $admin->phoneNumber = $request->phoneNumber;
-        $admin->gender = $request->gender;
+    public function update(cliRequest $request, $id)
+    {
+        $cli = Cliente::find($id);
+        $cli->name = $request->name;
+        $cli->lastname = $request->lastname;
+        $cli->address = $request->address;
+        $cli->phoneNumber = $request->phoneNumber;
+        $cli->gender = $request->gender;
 
-        $admin->save();
+        $cli->save();
 
         session()->flash('status',
                         ['color' => 'info', 
                          'message' => 'Registro editado exitosamente']);
 
-        return redirect()->action('AdminController@index');
-
+        return redirect()->action('ClienteController@index');
     }
 
     /**
@@ -123,14 +119,14 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $admin = Administrador::find($id);
-        $admin->status = false;
-        $admin->save();
+        $cli = Cliente::find($id);
+        $cli->status = false;
+        $cli->save();
 
         session()->flash('status',
                         ['color' => 'warning', 
                          'message' => 'Registro eliminado exitosamente']);
-
-        return redirect()->action('AdminController@index');
+        
+        return redirect()->action('ClienteController@index');
     }
 }

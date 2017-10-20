@@ -26,5 +26,6 @@ Route::group(['middleware' => 'Admin' , 'prefix' => 'admin'], function () {
     Route::view('dashadmin', 'admin.dashadmin');
     Route::resource('categoria','CategoriaController');
     Route::resource('padmin', 'AdminController');
+    Route::resource('cliente', 'ClienteController');
 });
 
