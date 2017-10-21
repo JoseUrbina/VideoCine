@@ -15,7 +15,7 @@ class Pelicula extends Model
     protected $fillable = ['categoria_id','name','description','image','fechaLanz','status'];
 
 
-    private function Categoria()
+    private function categoria()
     {
     	return $this->belongsTo('App\Models\Categoria');
     }

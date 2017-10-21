@@ -42,7 +42,6 @@ class LoginController extends Controller
 
     public function login()
     {
-
         $credentials = $this->validate(request(),[
             'username' => 'required|string',
             'password' => 'required|string'
@@ -50,17 +49,23 @@ class LoginController extends Controller
 
        if(Auth::attempt($credentials))
        {   
+            $vista = '';
             switch(Auth::user()->rol)
             {
                 case 'A':
-                    return view('admin/dashadmin');
+                    // variable para almacenar la vista y utilizar al final un solo redirect
+                    $vista = '/admin/dashadmin';
                     break;
                 default:
                     return 'No ha iniciado sesión';
             }
         }
         else
-            return view('auth/login');
+            $vista = '/auth/login';
+
+        // I used redirect because view always send to the login page though start session 
+        // besides, modified the redirectfauthenticated -> middleware
+        return redirect($vista);
     }
 
     public function logout()
