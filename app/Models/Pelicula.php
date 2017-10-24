@@ -20,8 +20,10 @@ class Pelicula extends Model
     	return $this->belongsTo('App\Models\Categoria');
     }
 
-    public function peliculas()
+    public function prestamo()
     {
+        // 1er parameter: Model which is the relationship
+        // 2do parameter: intermediary table between pelicula and prestamo
         return $this->belongsToMany('App\Models\Prestamo','detalle_prestamos');
     }
 }
