@@ -28,5 +28,6 @@ Route::group(['middleware' => 'Admin' , 'prefix' => 'admin'], function () {
     Route::resource('padmin', 'AdminController');
     Route::resource('cliente', 'ClienteController');
     Route::resource('pelicula','PeliculaController');
+    Route::resource('prestamo','PrestamoController');
 });
 

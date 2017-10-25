@@ -22,6 +22,8 @@ class Prestamo extends Model
 
     public function peliculas()
     {
+        // 1er parameter: Model which is the relationship
+        // 2do parameter: intermediary table between pelicula and prestamo
         return $this->belongsToMany('App\Models\Pelicula','detalle_prestamos');
     }
 }
