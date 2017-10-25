@@ -32,9 +32,7 @@
 						<!-- Showing amount movies of this loan -->
 						<td>{{ count($p->peliculas) }}</td>					
 						<td><input type="checkbox" checked="{{ $p->status }}" disabled="true"></td>
-						<td>
-							<a href="{{ route('prestamo.edit',['id' => $p->id ]) }}" class="btn btn-default">Edit</a>
-							
+						<td>							
 							{{-- Button and id_modal have the idCliente
 								 for identify which row belongs to
 								--}}

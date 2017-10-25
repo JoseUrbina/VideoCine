@@ -66,7 +66,7 @@ class PrestamoController extends Controller
             $i++;
         };
 
-        return 'guardado';
+        return redirect()->action('PrestamoController@index');
     }
 
     /**
@@ -88,7 +88,7 @@ class PrestamoController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -111,6 +111,17 @@ class PrestamoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prestamo = Prestamo::find($id);
+        $prestamo->status = false;
+        $prestamo->save();
+
+        foreach ($prestamo->peliculas as $p) {
+            // I used $p->id because with pivot many to many is have the another table completes in the relationship
+            $pelicula = Pelicula::find($p->id);
+            $pelicula->status = 'D';
+            $pelicula->save();
+        }
+
+        return redirect()->action('PrestamoController@index');
     }
 }
