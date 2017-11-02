@@ -1,0 +1,11 @@
+
+1. Query Syntax or Query Expression Syntax  -> similar to SQL SERVER
+
+	The LINQ query syntax starts with from keyword and ends with select keyword. 
+
+	Query syntax starts with a From clause followed by a Range variable. The From
+	clause is structured like "From rangeVariableName in IEnumerablecollection".
+	In English, this means, from each object in the collection. It is similar
+	to a foreach loop: foreach(Student s in studentList). 
+
+2. Method Syntax or Method extension syntax or Fluent
